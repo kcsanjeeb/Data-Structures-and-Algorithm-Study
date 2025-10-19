@@ -23,9 +23,14 @@ Each **category** (e.g., Arrays & Hashing, Two Pointers, etc.) contains multiple
 | [Problem-01: Contains Duplicate](./category-01/problem-01/readme.md) | [Solution-01: Brute Force](./category-01/problem-01/solution-01/readme.go) | O(n+m) | O(1) | 
 |  | [Solution-02: Sorting](./category-01/problem-01/solution-02/readme.md) |  O(n+m) | O(1) | 
 | [Problem-02: Valid Anagram](./category-01/problem-02/readme.md) | [Solution-01: Sorting](./category-01/problem-02/solution-01/readme.go) | O(n+m) | O(1) | 
-|  | [Solution-02: Hash Map](./category-01/problem-02/solution-02/readme.go) | O(n+m) | O(1) | 
+|  | [Solution-02: Hash Map](./category-01/problem-02/solution-02/readme.go) | O(n) | O(1) | 
 
 ### 2. [Category-02: Two Pointers]()
+| Problem | Solution Approaches | Time Complexity | Space Complexity | 
+| --- | ---- | --- | --- |
+| [Problem-01: Valid Palindrome](./category-02/problem-01/readme.md) | [Solution-01: Reverse String](./category-02/problem-01/solution-01/readme.go) | O(n+m) | O(1) | 
+|  | [Solution-02: Two Pointers](./category-02/problem-01/solution-02/readme.go) | O(n) | O(1) |
+
 
 ## ⚙️ How to Run Any Solution
 
