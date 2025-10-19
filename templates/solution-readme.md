@@ -1,9 +1,9 @@
 ---
-id: 20251019-124156-28450
-title: "SolutionB"
-approach_type: "dadasdasdsdads"
+id: 
+title: "Solution-01: Brute Force"
+approach_type: "Brute Force"
 language: "Go"
-tags: [  ]
+tags: [ "Two Pointers" , "String" , "Weekly Contest 229" ]
 ---
 
 ## 🔍 Idea

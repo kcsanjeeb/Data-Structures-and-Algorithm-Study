@@ -1,7 +1,7 @@
 ---
-id: 20251019-124304-32126
-title: "ProblemA"
-tags: [  ]
+id: 
+title: "Problem Title"
+tags: [ "Two Pointers" , "String" , "Weekly Contest 229" ]
 difficulty: "Easy"
 ---
 

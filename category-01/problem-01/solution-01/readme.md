@@ -1,7 +1,7 @@
 ---
-id: 20251019-124156-28450
-title: "SolutionB"
-approach_type: "dadasdasdsdads"
+id: 20251019-124029-15165
+title: "SolutionA"
+approach_type: "Sorting"
 language: "Go"
 tags: [  ]
 ---
