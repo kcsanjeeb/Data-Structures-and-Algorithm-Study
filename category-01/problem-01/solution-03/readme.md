@@ -65,3 +65,90 @@ func hasDuplicate(nums []int) bool {
 | **Space** | O(n) |  Worst case: all elements unique → stores n elements → O(n) |
 
 #### Tradeoff : Fastest, uses more memory
+
+### Conceptual Code 
+```go 
+func hasDuplicates(nums []int) bool {
+	seen := make(map[int]bool)
+	fmt.Println("🔍 Starting duplicate detection...")
+	fmt.Println("Input array:", nums)
+	fmt.Println("Initial map:", seen)
+	fmt.Println()
+
+	for i, num := range nums {
+		fmt.Printf("Iteration %d: Checking number %d\n", i+1, num)
+		fmt.Printf("   Current map: %v\n", seen)
+		fmt.Printf("   seen[%d] = %v\n", num, seen[num])
+
+		if seen[num] {
+			fmt.Printf("   🚨 DUPLICATE FOUND! %d already exists in map\n", num)
+			fmt.Printf("   ✅ Returning: true\n")
+			return true
+		}
+
+		seen[num] = true
+		fmt.Printf("   ➕ Added %d to map\n", num)
+		fmt.Printf("   Updated map: %v\n\n", seen)
+	}
+
+	fmt.Printf("🎉 No duplicates found!\n")
+	fmt.Printf("Final map: %v\n", seen)
+	fmt.Printf("✅ Returning: false\n")
+	return false
+}
+```
+```bash
+term@mac solution-03 $ go run main.go
+🔍 Starting duplicate detection...
+Input array: [1 2 3 4 5 6 7 7]
+Initial map: map[]
+
+Iteration 1: Checking number 1
+   Current map: map[]
+   seen[1] = false
+   ➕ Added 1 to map
+   Updated map: map[1:true]
+
+Iteration 2: Checking number 2
+   Current map: map[1:true]
+   seen[2] = false
+   ➕ Added 2 to map
+   Updated map: map[1:true 2:true]
+
+Iteration 3: Checking number 3
+   Current map: map[1:true 2:true]
+   seen[3] = false
+   ➕ Added 3 to map
+   Updated map: map[1:true 2:true 3:true]
+
+Iteration 4: Checking number 4
+   Current map: map[1:true 2:true 3:true]
+   seen[4] = false
+   ➕ Added 4 to map
+   Updated map: map[1:true 2:true 3:true 4:true]
+
+Iteration 5: Checking number 5
+   Current map: map[1:true 2:true 3:true 4:true]
+   seen[5] = false
+   ➕ Added 5 to map
+   Updated map: map[1:true 2:true 3:true 4:true 5:true]
+
+Iteration 6: Checking number 6
+   Current map: map[1:true 2:true 3:true 4:true 5:true]
+   seen[6] = false
+   ➕ Added 6 to map
+   Updated map: map[1:true 2:true 3:true 4:true 5:true 6:true]
+
+Iteration 7: Checking number 7
+   Current map: map[1:true 2:true 3:true 4:true 5:true 6:true]
+   seen[7] = false
+   ➕ Added 7 to map
+   Updated map: map[1:true 2:true 3:true 4:true 5:true 6:true 7:true]
+
+Iteration 8: Checking number 7
+   Current map: map[1:true 2:true 3:true 4:true 5:true 6:true 7:true]
+   seen[7] = true
+   🚨 DUPLICATE FOUND! 7 already exists in map
+   ✅ Returning: true
+solve() => true
+```
