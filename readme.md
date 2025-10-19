@@ -12,6 +12,7 @@ Each **category** (e.g., Arrays & Hashing, Two Pointers, etc.) contains multiple
 | Problem | Solution Approaches | Time Complexity | Space Complexity |
 | --- | --- | --- | --- |
 | [Problem-01: Contains Duplicate](./category-01/problem-01/readme.md) |  |  |  |
+| [Problem-02: Valid Anagram](./category-01/problem-02/readme.md) |  |  |  |
 
 ### 2. [Category-02 - Two Pointers](./category-02/readme.md)
 | Problem | Solution Approaches | Time Complexity | Space Complexity |
