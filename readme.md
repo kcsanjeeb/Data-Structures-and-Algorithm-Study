@@ -16,6 +16,7 @@ Each **category** (e.g., Arrays & Hashing, Two Pointers, etc.) contains multiple
 
 ---
 
+### 1. [Category-01: Arrays & Hashing](./category-01/readme.md)
 | Problem | Solution Approaches | 
 | --- | ---- | 
 | [Problem-01: Contains Duplicate](./category-01/problem-01/readme.md) | [Solution-01: Brute Force](./category-01/problem-01/solution-01/readme.go) |
