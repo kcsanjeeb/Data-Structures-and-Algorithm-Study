@@ -8,20 +8,81 @@ Each **category** (e.g., Arrays & Hashing, Two Pointers, etc.) contains multiple
 <!-- TOC:START -->
 ## 🧭 Table of Contents (auto-generated)
 
-### 1. [Category-01 - CategoryA](./category-01/readme.md)
+### 1. [Category-01 - Arrays & Hashing](./category-01/readme.md)
 | Problem | Solution Approaches | Time Complexity | Space Complexity |
 | --- | --- | --- | --- |
-| [Problem-01: ProblemA](./category-01/problem-01/readme.md) | [SolutionA](./category-01/problem-01/solution-01/readme.md) |  |  |
-|  | [SolutionB](./category-01/problem-01/solution-02/readme.md) |  |  |
-| [Problem-02: ProblemB](./category-01/problem-02/readme.md) | [SolutionA](./category-01/problem-02/solution-01/readme.md) |  |  |
-|  | [SolutionB](./category-01/problem-02/solution-02/readme.md) |  |  |
-|  | [SolutionC](./category-01/problem-02/solution-03/readme.md) |  |  |
 
-### 2. [Category-02 - CategoryB](./category-02/readme.md)
+### 2. [Category-02 - Two Pointers](./category-02/readme.md)
 | Problem | Solution Approaches | Time Complexity | Space Complexity |
 | --- | --- | --- | --- |
-| [Problem-01: ProblemA](./category-02/problem-01/readme.md) | [SolutionA](./category-02/problem-01/solution-01/readme.md) |  |  |
-| [Problem-02: ProblemB](./category-02/problem-02/readme.md) | [SolutionB](./category-02/problem-02/solution-01/readme.md) |  |  |
+
+### 3. [Category-03 - Stack](./category-03/readme.md)
+| Problem | Solution Approaches | Time Complexity | Space Complexity |
+| --- | --- | --- | --- |
+
+### 4. [Category-04 - Binary Search](./category-04/readme.md)
+| Problem | Solution Approaches | Time Complexity | Space Complexity |
+| --- | --- | --- | --- |
+
+### 5. [Category-05 - Sliding Window](./category-05/readme.md)
+| Problem | Solution Approaches | Time Complexity | Space Complexity |
+| --- | --- | --- | --- |
+
+### 6. [Category-06 - Linked List](./category-06/readme.md)
+| Problem | Solution Approaches | Time Complexity | Space Complexity |
+| --- | --- | --- | --- |
+
+### 7. [Category-07 - Trees](./category-07/readme.md)
+| Problem | Solution Approaches | Time Complexity | Space Complexity |
+| --- | --- | --- | --- |
+
+### 8. [Category-08 - Tries](./category-08/readme.md)
+| Problem | Solution Approaches | Time Complexity | Space Complexity |
+| --- | --- | --- | --- |
+
+### 9. [Category-09 - Backtracking](./category-09/readme.md)
+| Problem | Solution Approaches | Time Complexity | Space Complexity |
+| --- | --- | --- | --- |
+
+### 10. [Category-10 - Heap , Priority Queue](./category-10/readme.md)
+| Problem | Solution Approaches | Time Complexity | Space Complexity |
+| --- | --- | --- | --- |
+
+### 11. [Category-11 - Graphs](./category-11/readme.md)
+| Problem | Solution Approaches | Time Complexity | Space Complexity |
+| --- | --- | --- | --- |
+
+### 12. [Category-12 - 1-D Dynamic Programming](./category-12/readme.md)
+| Problem | Solution Approaches | Time Complexity | Space Complexity |
+| --- | --- | --- | --- |
+
+### 13. [Category-13 - Intervals](./category-13/readme.md)
+| Problem | Solution Approaches | Time Complexity | Space Complexity |
+| --- | --- | --- | --- |
+
+### 14. [Category-14 - Greedy](./category-14/readme.md)
+| Problem | Solution Approaches | Time Complexity | Space Complexity |
+| --- | --- | --- | --- |
+
+### 15. [Category-15 - Advanced Graphs](./category-15/readme.md)
+| Problem | Solution Approaches | Time Complexity | Space Complexity |
+| --- | --- | --- | --- |
+
+### 16. [Category-16 - 2-D Dynamic Programming](./category-16/readme.md)
+| Problem | Solution Approaches | Time Complexity | Space Complexity |
+| --- | --- | --- | --- |
+
+### 17. [Category-17 - Bit Manipulation](./category-17/readme.md)
+| Problem | Solution Approaches | Time Complexity | Space Complexity |
+| --- | --- | --- | --- |
+
+### 18. [Category-18 - Bit Manipulation](./category-18/readme.md)
+| Problem | Solution Approaches | Time Complexity | Space Complexity |
+| --- | --- | --- | --- |
+
+### 19. [Category-19 - Math & Geometry](./category-19/readme.md)
+| Problem | Solution Approaches | Time Complexity | Space Complexity |
+| --- | --- | --- | --- |
 
 <!-- TOC:END -->
 
