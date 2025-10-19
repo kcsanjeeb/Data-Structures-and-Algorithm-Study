@@ -15,10 +15,10 @@ Define the idea here ....
 *
 
 ## 🧮 Complexity
-| Metric  |  Complexity |
-|---------|-------------|
-| Time    |             |
-| Space   |             |
+| Metric | Complexity | Reason |
+|--------|------------|--------|
+| **Time** | O(n log n + m log m) | Two sorting operations |
+| **Space** | O(n + m) | Two rune slice conversions |
 
 ## 🧠 Example Run
 ```go
