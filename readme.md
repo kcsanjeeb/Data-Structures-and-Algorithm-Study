@@ -1,4 +1,4 @@
-# 🧩 DSA Study using Go
+# 🧩 DSA Study using Golang
 
 This repository contains structured lessons for mastering **Data Structures and Algorithms (DSA)** using **Golang**.  
 Each **category** (e.g., Arrays & Hashing, Two Pointers, etc.) contains multiple **problems**, and each problem has one or more **solutions** exploring different algorithmic strategies.
@@ -15,6 +15,11 @@ Each **category** (e.g., Arrays & Hashing, Two Pointers, etc.) contains multiple
 |  | [Problem-02](./category-02/problem-02/readme.md) | Variation-1, Variation-2 |
 
 ---
+
+| Problem | Solution Approaches | 
+| --- | ---- | 
+| [Problem-01: Contains Duplicate](./category-01/problem-01/readme.md) | [Solution-01: Brute Force](./category-01/problem-01/solution-01/readme.go) |
+|    | [Solution-02: Sorting](./category-01/problem-01/solution-02/readme.md)
 
 ## ⚙️ How to Run Any Solution
 
