@@ -1,57 +1,122 @@
-## Time Complexity Calculation (my simple way)
+---
+title: "Complexity Calculation (My Simple Way)"
+description: "A simple and clear explanation of time and space complexity for coding interviews."
+---
 
-### 1. Loop
+## **Complexity Calculation (My Simple Way)**
+
+---
+
+# **🕒 Time Complexity**
+
+### **1. Single Loop**
 ```go
-for i:=0; i<n; i++ {    // n times
-    x = y + z           // constant time (c)
+for i := 0; i < n; i++ {    // runs n times
+    x = y + z               // constant time (c)
 }
 ```
-So, it will be c * n 
-In big 0 terms we can neglect this constant (c) 
-So it is O(n)
 
-### 2. Nested Loop 
+- Total time = `c * n`  
+- In Big-O, we ignore constants ⇒ **O(n)**
+
+---
+
+### **2. Nested Loop**
 ```go
-for i:=0; i<n; i++ {        // n times
-    for j:=1; j<n; j++ {    // n times
-        x = y + z           // constant time (c)
+for i := 0; i < n; i++ {        // n times
+    for j := 1; j < n; j++ {    // n times
+        x = y + z               // constant time (c)
     }
 }
 ```
-So, it will be n * n * c = cn²
-We neglect the constant (c)
-so it is O(n²)
 
-### 3. Sequential Statements
+- Total time = `n * n * c = c * n²`  
+- Ignoring constant `c` ⇒ **O(n²)**
+
+---
+
+### **3. Sequential Statements**
 ```go
-a = a + b ; // constant time c₁
+a = a + b         // constant time c₁
 
-for i:=0 ; i < n ; i++ {    // n times
-    x = y+z                 // constant time c₂
+for i := 0; i < n; i++ {    // n times
+    x = y + z               // constant time c₂
 }
 
-for j:=0 ; j<n ; j++{   // n times
-    j = k+l             // constant time c₃
-}
-```
-= c₁ + n*c₂ + n*c₃
-Neglect the constants 
-= n+n = 2n (neglect 2) = O(n)
-
-### 4. If-else statements
-```go 
-if {
-    // Suppose inside it is for loop with O(n)
-} else{
-    // Suppose inside it is for loop with O(n²)
+for j := 0; j < n; j++ {    // n times
+    j = k + l               // constant time c₃
 }
 ```
-We consider with the bigger time complexity i.e, O(n²)
 
-## Hirerarchy 
-O(1) < O(logn) < O(n) < O(nlogn) < O(n^c) < O(n!)
-( best case ) ----> (Worst Case)
+- Total = `c₁ + n*c₂ + n*c₃`  
+- Ignore constants ⇒ `n + n = 2n ≈ O(n)`  
+✅ **Final complexity: O(n)**
 
+---
+
+### **4. If-Else Statements**
+```go
+if condition {
+    // Suppose this block has O(n)
+} else {
+    // Suppose this block has O(n²)
+}
+```
+
+- The total complexity = **max(O(n), O(n²)) = O(n²)**  
+- Always consider the **worst-case** branch.
+
+---
+
+### **Hierarchy of Common Complexities**
+
+| Notation | Description | Example |
+|-----------|--------------|----------|
+| O(1) | Constant | Access by index |
+| O(log n) | Logarithmic | Binary search |
+| O(n) | Linear | Single loop |
+| O(n log n) | Log-linear | Merge sort |
+| O(n²) | Quadratic | Nested loops |
+| O(n³) | Cubic | 3 nested loops |
+| O(2ⁿ) | Exponential | Recursion with 2 branches |
+| O(n!) | Factorial | Permutation generation |
+
+📈 **Order of Growth (from best → worst):**
+
+> O(1) < O(log n) < O(n) < O(n log n) < O(n²) < O(2ⁿ) < O(n!)
+
+---
 
 ![Sorting And Searching Algorithms - Time Complexities Cheat Sheet | HackerEarth](https://he-s3.s3.amazonaws.com/media/uploads/c950295.png)
 
+---
+
+# **💾 Space Complexity**
+
+Let’s assume an `int` takes **4 bytes** of memory:
+
+```go
+var a int       // 4 bytes
+var b int       // 4 bytes
+var c int       // 4 bytes
+var z int       
+z = a + b + c   // 4 bytes
+return z        // 4 bytes
+```
+
+- Total memory = `4 * 4 + 4(return)` = **20 bytes**
+
+✅ Hence, **Space Complexity = O(1)**  
+(because it’s constant, independent of input size)
+
+---
+
+## **⚖️ Space–Time Trade-Off and Efficiency**
+
+- There’s always a **trade-off between memory usage and runtime performance.**  
+- **Space efficiency** and **time efficiency** often move in opposite directions.  
+- More memory (space) → faster algorithms (less recomputation).  
+- Less memory → slower algorithms (more recomputation).
+
+💡 **Rule of thumb:**  
+> The goal is not to minimize one, but to balance both for your use case.
