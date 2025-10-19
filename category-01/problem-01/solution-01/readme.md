@@ -30,5 +30,5 @@ tags: [  ]
 
 | Metric  | Complexity | Reason |
 |---------|------------|---------|
-| **Time** | O( ) | [1-2 word reason: nested loops/hashmap/recursion] |
-| **Space** | O( ) | [1-2 word reason: extra storage/recursion stack] |
+| **Time** | O(n²) | Nested Loops |
+| **Space** | O(1) | No extra storage |
