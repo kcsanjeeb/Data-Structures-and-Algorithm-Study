@@ -2,14 +2,17 @@
 set -euo pipefail
 
 # ==========================================================
-# DSA Study Scaffolder (Add-anytime) — v4
+# DSA Study Scaffolder (Add-anytime) — v4.2 (macOS Bash 3.2 safe)
 # - category/problem/solution modes (+ interactive)
-# - nounset-safe; macOS Bash 3.2 compatible
 # - prompts to create category if missing (y/N)
 # - ALWAYS updates root README TOC between markers
+# - Lists categories, problems, (solutions) during interactive flows
 # ==========================================================
 
-pad2() { printf "%02d" "$1"; }
+# ---------------- Utilities ----------------
+
+# Base-10 safe zero-pad (avoids octal trap for 08/09)
+pad2() { printf "%02d" "$((10#$1))"; }
 nowid() { date "+%Y%m%d-%H%M%S-$RANDOM"; }
 
 trim() {
@@ -213,7 +216,6 @@ find_readme_file() {
 # extract "title: " from front-matter of a README (md or go)
 extract_title() {
   local file="$1"
-  # get between the first '---' pair and search title:
   awk '
     BEGIN{inblk=0}
     /^---[[:space:]]*$/{ if(inblk==0){inblk=1;next} else {inblk=0;exit} }
@@ -242,13 +244,11 @@ extract_difficulty() {
 # extract time/space complexity from solution README table
 extract_complexity_cell() {
   local file="$1" which="$2" # "Time" or "Space"
-  # find the row starting with | Time or | Space and return 3rd column
   awk -v which="$which" '
     BEGIN{FS="|"}
-    $0 ~ /^\|[[:space:]]*Metric/ { next }   # skip header
-    $0 ~ /^\|[-[:space:]]*\|/    { next }   # skip divider
+    $0 ~ /^\|[[:space:]]*Metric/ { next }
+    $0 ~ /^\|[-[:space:]]*\|/    { next }
     {
-      # columns: 1 is empty, 2 is label, 3 is value, last is empty due to pipes
       label=$2; gsub(/^[[:space:]]+|[[:space:]]+$/, "", label);
       if(label==which){
         val=$3; gsub(/^[[:space:]]+|[[:space:]]+$/, "", val);
@@ -256,6 +256,133 @@ extract_complexity_cell() {
       }
     }
   ' "$file" 2>/dev/null || true
+}
+
+# ---------------- Category/Problem/Solution menus (macOS-safe) ----------------
+
+extract_cat_title_from_readme() {
+  local readme="$1" fallback="$2"
+  local t=""
+  if [[ -f "$readme" ]]; then
+    t="$(awk '
+      BEGIN{inblk=0}
+      /^---[[:space:]]*$/{ if(inblk==0){inblk=1;next} else {inblk=0;exit} }
+      inblk==1 && $1 ~ /^title:/ {
+        sub(/^title:[[:space:]]*/, "", $0); gsub(/^"|"$/, "", $0); print; exit
+      }' "$readme" 2>/dev/null || true)"
+    if [[ -z "$t" ]]; then
+      t="$(awk '/^# /{sub(/^# /,""); print; exit}' "$readme" 2>/dev/null || true)"
+    fi
+  fi
+  [[ -n "$t" ]] && echo "$t" || echo "$fallback"
+}
+
+next_category_num() {
+  local max=0 n base
+  shopt -s nullglob
+  for d in category-*; do
+    [[ -d "$d" ]] || continue
+    base="${d##*/}"          # "category-08"
+    n="${base#category-}"    # "08"
+    [[ "$n" =~ ^[0-9]+$ ]] || continue
+    (( 10#$n > max )) && max=$((10#$n))
+  done
+  printf "%02d" $((max+1))
+}
+
+show_categories_menu() {
+  echo ""
+  echo "Available categories:"
+  local has=0 base num title disp
+  shopt -s nullglob
+  for d in category-*; do
+    [[ -d "$d" ]] || continue
+    has=1
+    base="${d##*/}"                # "category-08"
+    num="${base#category-}"        # "08"
+    title="$(extract_cat_title_from_readme "$d/readme.md" "Category-$num")"
+    disp="$(printf "%02d" "$((10#$num))")"
+    printf "  %s  -  %s\n" "$disp" "$title"
+  done
+  if [[ $has -eq 0 ]]; then
+    echo "  (none yet)"
+  fi
+  local nextn; nextn="$(next_category_num)"
+  echo "Suggested next category: $nextn"
+  echo ""
+}
+
+extract_problem_title_from_readme() {
+  local readme="$1" fallback="$2"
+  local t=""
+  if [[ -f "$readme" ]]; then
+    t="$(awk '
+      BEGIN{inblk=0}
+      /^---[[:space:]]*$/{ if(inblk==0){inblk=1;next} else {inblk=0;exit} }
+      inblk==1 && $1 ~ /^title:/ {
+        sub(/^title:[[:space:]]*/, "", $0); gsub(/^"|"$/, "", $0); print; exit
+      }' "$readme" 2>/dev/null || true)"
+    if [[ -z "$t" ]]; then
+      t="$(awk '/^# /{sub(/^# /,""); print; exit}' "$readme" 2>/dev/null || true)"
+    fi
+  fi
+  [[ -n "$t" ]] && echo "$t" || echo "$fallback"
+}
+
+show_problems_menu() {
+  local catdir="category-$CAT_NUM"
+  echo ""
+  echo "Problems in $catdir:"
+  local has=0 num rm title disp
+  shopt -s nullglob
+  for p in "$catdir"/problem-*; do
+    [[ -d "$p" ]] || continue
+    has=1
+    num="${p##*/problem-}"                 # e.g., "08"
+    if   [[ -f "$p/readme.md" ]]; then rm="$p/readme.md"
+    elif [[ -f "$p/readme.go" ]]; then rm="$p/readme.go"
+    else rm=""; fi
+    title="$(extract_problem_title_from_readme "$rm" "Problem-$num")"
+    disp="$(printf "%02d" "$((10#$num))")"
+    printf "  %s  -  %s\n" "$disp" "$title"
+  done
+  if [[ $has -eq 0 ]]; then
+    echo "  (no problems yet)"
+  fi
+  local nextn; nextn="$(next_problem_num "$catdir")"
+  echo "Suggested next problem: $nextn"
+  echo ""
+}
+
+show_solutions_menu() {
+  local catnum="$1" probnum="$2"
+  local probdir="category-$catnum/problem-$probnum"
+  echo ""
+  echo "Solutions in $probdir:"
+  local has=0 sn rm stitle disp
+  shopt -s nullglob
+  for s in "$probdir"/solution-*; do
+    [[ -d "$s" ]] || continue
+    has=1
+    sn="${s##*/solution-}"                   # e.g., "08"
+    if   [[ -f "$s/readme.md" ]]; then rm="$s/readme.md"
+    elif [[ -f "$s/readme.go" ]]; then rm="$s/readme.go"
+    else rm=""; fi
+    stitle="$(awk '
+      BEGIN{inblk=0}
+      /^---[[:space:]]*$/{ if(inblk==0){inblk=1;next} else {inblk=0;exit} }
+      inblk==1 && $1 ~ /^title:/ {
+        sub(/^title:[[:space:]]*/, "", $0); gsub(/^"|"$/, "", $0); print; exit
+      }' "$rm" 2>/dev/null || echo "Solution-$sn")"
+    disp="$(printf "%02d" "$((10#$sn))")"
+    printf "  %s  -  %s\n" "$disp" "$stitle"
+  done
+  if [[ $has -eq 0 ]]; then
+    echo "  (no solutions yet)"
+  fi
+  local nexts; nexts="$(next_solution_num "$probdir")"
+  echo "Suggested next solution: $nexts"
+  echo ""
 }
 
 # ---------------- Root README TOC updater ----------------
@@ -362,24 +489,8 @@ update_root_toc() {
               sub(/^approach_type:[[:space:]]*/, "", $0); gsub(/^"|"$/, "", $0); print; exit
             }' "$sol/$sol_rm_file" 2>/dev/null || true)"
 
-          # Complexity cells from the mini table
-          time_c="$(awk '
-            BEGIN{FS="|"}
-            $0 ~ /^\|[[:space:]]*Metric/ {next}
-            $0 ~ /^\|[-[:space:]]*\|/ {next}
-            {
-              lab=$2; gsub(/^[[:space:]]+|[[:space:]]+$/, "", lab);
-              if(lab=="Time"){ val=$3; gsub(/^[[:space:]]+|[[:space:]]+$/, "", val); print val; exit }
-            }' "$sol/$sol_rm_file" 2>/dev/null || true)"
-
-          space_c="$(awk '
-            BEGIN{FS="|"}
-            $0 ~ /^\|[[:space:]]*Metric/ {next}
-            $0 ~ /^\|[-[:space:]]*\|/ {next}
-            {
-              lab=$2; gsub(/^[[:space:]]+|[[:space:]]+$/, "", lab);
-              if(lab=="Space"){ val=$3; gsub(/^[[:space:]]+|[[:space:]]+$/, "", val); print val; exit }
-            }' "$sol/$sol_rm_file" 2>/dev/null || true)"
+          time_c="$(extract_complexity_cell "$sol/$sol_rm_file" "Time")"
+          space_c="$(extract_complexity_cell "$sol/$sol_rm_file" "Space")"
         fi
 
         if [[ $first_row_done -eq 0 ]]; then
@@ -413,7 +524,6 @@ update_root_toc() {
   rm -f "$tmp_toc"
   echo "🧭 TOC updated in readme.md"
 }
-
 
 # ---------------- CLI parsing ----------------
 MODE="${1-}"
@@ -454,61 +564,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-
-# --- Helpers to list categories nicely (macOS-safe) ---
-
-extract_cat_title_from_readme() {
-  # Try front-matter title; else fallback to first H1; else "Category-XX"
-  local readme="$1" fallback="$2"
-  local t=""
-  if [[ -f "$readme" ]]; then
-    t="$(awk '
-      BEGIN{inblk=0}
-      /^---[[:space:]]*$/{ if(inblk==0){inblk=1;next} else {inblk=0;exit} }
-      inblk==1 && $1 ~ /^title:/ {
-        sub(/^title:[[:space:]]*/, "", $0); gsub(/^"|"$/, "", $0); print; exit
-      }' "$readme" 2>/dev/null || true)"
-    if [[ -z "$t" ]]; then
-      t="$(awk '/^# /{sub(/^# /,""); print; exit}' "$readme" 2>/dev/null || true)"
-    fi
-  fi
-  [[ -n "$t" ]] && echo "$t" || echo "$fallback"
-}
-
-next_category_num() {
-  local max=0 n
-  shopt -s nullglob
-  for d in category-*; do
-    [[ -d "$d" ]] || continue
-    n="${d##*/category-}"
-    [[ "$n" =~ ^[0-9]{2}$ ]] || continue
-    (( 10#$n > max )) && max=$((10#$n))
-  done
-  printf "%02d" $((max+1))
-}
-
-
-
-show_categories_menu() {
-  echo ""
-  echo "Available categories:"
-  local has=0
-  shopt -s nullglob
-  for d in category-*; do
-    [[ -d "$d" ]] || continue
-    has=1
-    local num="${d##*/category-}"
-    local title; title="$(extract_cat_title_from_readme "$d/readme.md" "Category-$num")"
-    printf "  %s  -  %s\n" "$num" "$title"
-  done
-  if [[ $has -eq 0 ]]; then
-    echo "  (none yet)"
-  fi
-  local nextn; nextn="$(next_category_num)"
-  echo "Suggested next category: $nextn"
-  echo ""
-}
-
+# ---------------- Category existence helpers ----------------
 
 ensure_cat_num() {
   if [[ -z "${CAT_NUM:-}" ]]; then
@@ -516,14 +572,12 @@ ensure_cat_num() {
       show_categories_menu
       local def; def="$(next_category_num)"
       ask "Category number (e.g., 01) [${def}]: " CAT_NUM "$def"
-      # Normalize to 2 digits
-      CAT_NUM="$(printf "%02d" "${CAT_NUM#0}")"
+      CAT_NUM="$(pad2 "${CAT_NUM#0}")"
     else
       echo "Missing --cat"; exit 1
     fi
   fi
 }
-
 
 ensure_category_dir_or_offer_create() {
   ensure_cat_num
@@ -578,6 +632,15 @@ do_problem() {
   ensure_category_dir_or_offer_create
   local CATDIR="category-$CAT_NUM"
 
+  # Show existing problems for this category
+  show_problems_menu
+
+  # Optional explicit number to create; default = next
+  if [[ $INTERACTIVE -eq 1 && ( -z "${PROB_NUM:-}" || "$PROB_NUM" == "auto" ) ]]; then
+    local defp; defp="$(next_problem_num "$CATDIR")"
+    ask "Problem number to create (e.g., 01) [${defp}]: " PROB_NUM "$defp"
+  fi
+
   if [[ $INTERACTIVE -eq 1 && -z "$PROB_TITLE" ]]; then
     ask "Problem title: " PROB_TITLE ""
   fi
@@ -617,11 +680,23 @@ do_solution() {
   ensure_cat_num
   ensure_category_dir_or_offer_create
 
+  # Show problems list before asking which to add to
+  show_problems_menu
+
   if [[ -z "$PROB_NUM" || "$PROB_NUM" == "auto" ]]; then
     if [[ $INTERACTIVE -eq 1 ]]; then ask "Problem number to add solution (e.g., 1 => problem-01): " PROB_NUM ""; fi
   fi
   [[ -n "$PROB_NUM" ]] || { echo "Missing --prob for solution mode"; exit 1; }
   PROB_NUM="$(pad2 "$PROB_NUM")"
+
+  # Show existing solutions for this problem and suggest next
+  show_solutions_menu "$CAT_NUM" "$PROB_NUM"
+
+  # Optional explicit solution number; default = next
+  if [[ $INTERACTIVE -eq 1 && ( -z "${SOL_NUM:-}" || "$SOL_NUM" == "auto" ) ]]; then
+    local defsol; defsol="$(next_solution_num "category-$CAT_NUM/problem-$PROB_NUM")"
+    ask "Solution number to create (e.g., 01) [${defsol}]: " SOL_NUM "$defsol"
+  fi
 
   local PROBDIR="category-$CAT_NUM/problem-$PROB_NUM"
   [[ -d "$PROBDIR" ]] || { echo "ERROR: '$PROBDIR' does not exist. Create the problem first."; exit 1; }
@@ -704,5 +779,3 @@ EOF
     ;;
   *) echo "Unknown mode: $MODE"; exit 1;;
 esac
-
-
