@@ -5,27 +5,29 @@ approach_type: "Sorting"
 language: "Go"
 tags: [  ]
 ---
-
 ## 🔍 Idea
-Define the idea here ....
+* Define the idea here ....
 
 ## 🧩 Steps
-* 
-*
-*
+* Define the steps here ....
+
+---
 
 ## 🧮 Complexity
-| Metric  |  Complexity |
-|---------|-------------|
-| Time    |             |
-| Space   |             |
 
-## 🧠 Example Run
-```go
+### Time Complexity: O(n²)
+**Quick Calculation:**
+-
+-
+-
 
-```
-```bash
-Output: 
+### Space Complexity: O(1)
+**Quick Check:**
+-
+-
+-
 
-
-```
+| Metric  |  Complexity | Reason |
+|---------|-------------|--------|
+| **Time**  | O( ) | [1-2 word reason: nested loops/hashmap/recursion] |
+| **Space** | O( ) | [1-2 word reason: extra storage/recursion stack] |

@@ -128,8 +128,16 @@ return z        // 4 bytes
 ## Common Time Complexities:
 | Code Pattern	| Complexity	| 
 | --- | --- | 
-| for i:=0; i<n; i++ (single loop)	| O(n)	| 
-| for i { for j { ... } } (nested)	| O(n²) | 	
-| for i { for j { for k { ... } } }	| O(n³) |	
-| Binary search / divide by 2 |	O(log n)    | 	
-| Recursion with 2 branches |	O(2ⁿ)       | 	
+| `for i:=0; i<n; i++ (single loop)`	| O(n)	| 
+| `for i { for j { ... } } (nested)`	| O(n²) | 	
+| `for i { for j { for k { ... } } }`	| O(n³) |	
+| `Binary search / divide by 2` |	O(log n)    | 	
+| `Recursion with 2 branches` |	O(2ⁿ)       | 	
+
+
+## 🚨 Pro Tips for Competitions
+* Nested loops → usually O(n²)
+* Single loop → usually O(n)
+* Using hash map/set → usually O(n) time, O(n) space
+* No extra storage → O(1) space
+* Recursion → check depth and branches
