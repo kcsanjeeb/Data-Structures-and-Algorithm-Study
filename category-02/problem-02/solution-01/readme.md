@@ -1,10 +1,10 @@
 ---
-id: 01
+id: 
 title: "Solution-01: Brute Force"
 tags: [ "Two Pointers" , "String" , "Weekly Contest 229" ]
-problem: [Problem Title](../readme.md)
 approach_type: "Brute Force"
 language: "Go"
+
 ---
 
 ## 🔍 Idea
