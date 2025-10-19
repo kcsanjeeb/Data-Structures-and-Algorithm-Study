@@ -11,7 +11,7 @@ Each **category** (e.g., Arrays & Hashing, Two Pointers, etc.) contains multiple
 ### 1. [Category-01 - Arrays & Hashing](./category-01/readme.md)
 | Problem | Solution Approaches | Time Complexity | Space Complexity |
 | --- | --- | --- | --- |
-| [Problem-01: Contains Duplicate](./category-01/problem-01/readme.md) | [Brute Force](./category-01/problem-01/solution-01/readme.md) |  |  |
+| [Problem-01: Contains Duplicate](./category-01/problem-01/readme.md) | [Brute Force](./category-01/problem-01/solution-01/readme.md) | O(n²) | O(1) |
 |  | [Sorting](./category-01/problem-01/solution-02/readme.md) |  |  |
 |  | [Hash Set](./category-01/problem-01/solution-03/readme.md) |  |  |
 |  | [Hash Set Length](./category-01/problem-01/solution-04/readme.md) |  |  |
