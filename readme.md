@@ -12,7 +12,7 @@ Each **category** (e.g., Arrays & Hashing, Two Pointers, etc.) contains multiple
 | Problem | Solution Approaches | Time Complexity | Space Complexity |
 | --- | --- | --- | --- |
 | [Problem-01: Contains Duplicate](./category-01/problem-01/readme.md) | [Brute Force](./category-01/problem-01/solution-01/readme.md) | O(n²) | O(1) |
-|  | [Sorting](./category-01/problem-01/solution-02/readme.md) |  |  |
+|  | [Sorting](./category-01/problem-01/solution-02/readme.md) | O(n log n)  | O(1) |
 |  | [Hash Set](./category-01/problem-01/solution-03/readme.md) |  |  |
 |  | [Hash Set Length](./category-01/problem-01/solution-04/readme.md) |  |  |
 | [Problem-02: Valid Anagram](./category-01/problem-02/readme.md) | [Sorting](./category-01/problem-02/solution-01/readme.md) |  |  |
@@ -102,6 +102,7 @@ Each **category** (e.g., Arrays & Hashing, Two Pointers, etc.) contains multiple
 ## 📚 Theory
 * [Complexity Calculation](./theory/time-complexity.mdx)
 * [Brute Force](https://www.geeksforgeeks.org/dsa/brute-force-approach-and-its-pros-and-cons)
+* [Hash Table and Hash Function](https://www.youtube.com/watch?v=KyUTuwz_b7Q)
 
 ## ⚙️ How to Run Any Solution
 

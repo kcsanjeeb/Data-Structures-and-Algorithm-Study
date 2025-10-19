@@ -5,29 +5,35 @@ approach_type: "Sorting"
 language: "Go"
 tags: [  ]
 ---
+
 ## 🔍 Idea
-* Define the idea here ....
+* Sort first, then check adjacent elements
+* After sorting, duplicates become neighbors - easy to find with single pass
 
 ## 🧩 Steps
-* Define the steps here ....
+* Sort the input array using built-in sort
+* Iterate through sorted array comparing each element with its next neighbor
+* If any adjacent elements are equal, duplicate found - return true immediately
+* If no adjacent duplicates found after full scan, return false
 
 ---
 
 ## 🧮 Complexity
 
 ### Time Complexity: O(n²)
-**Quick Calculation:**
--
--
--
+**Reason:** Sorting dominates the time complexity
+- `sort.Ints(nums)` → O(n log n) [Quicksort/Introsort]
+- Single loop scan → O(n) 
+- **Total: O(n log n) + O(n) = O(n log n)**
+
 
 ### Space Complexity: O(1)
 **Quick Check:**
--
--
--
+**Reason:** In-place sorting
+- Go's `sort.Ints` modifies the array in-place
+- No additional data structures created
 
 | Metric  |  Complexity | Reason |
 |---------|-------------|--------|
-| **Time**  | O( ) | [1-2 word reason: nested loops/hashmap/recursion] |
-| **Space** | O( ) | [1-2 word reason: extra storage/recursion stack] |
+| **Time**  | O(n log n) | Sorting Dominates |
+| **Space** | O( 1 ) | In Place sort |
