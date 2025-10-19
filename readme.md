@@ -15,7 +15,7 @@ Each **category** (e.g., Arrays & Hashing, Two Pointers, etc.) contains multiple
 |  | [Sorting](./category-01/problem-01/solution-02/readme.md) | O(n log n)  | O(1) |
 |  | [✅ Hash Set](./category-01/problem-01/solution-03/readme.md) | O(n) | O(n) |
 |  | [Hash Set Length](./category-01/problem-01/solution-04/readme.md) | O(n)  | O(n) |
-| [Problem-02: Valid Anagram](./category-01/problem-02/readme.md) | [Sorting](./category-01/problem-02/solution-01/readme.md) |  |  |
+| [Problem-02: Valid Anagram](./category-01/problem-02/readme.md) | [Sorting](./category-01/problem-02/solution-01/readme.md) | O(n log n + m log m) | O(n + m) |
 |  | [Hash Map](./category-01/problem-02/solution-02/readme.md) |  |  |
 |  | [Hash Table (Using Array)](./category-01/problem-02/solution-03/readme.md) |  |  |
 | [Problem-03: Two Sum](./category-01/problem-03/readme.md) | [Brute Force](./category-01/problem-03/solution-01/readme.md) |  |  |
