@@ -451,16 +451,76 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+
+# --- Helpers to list categories nicely (macOS-safe) ---
+
+extract_cat_title_from_readme() {
+  # Try front-matter title; else fallback to first H1; else "Category-XX"
+  local readme="$1" fallback="$2"
+  local t=""
+  if [[ -f "$readme" ]]; then
+    t="$(awk '
+      BEGIN{inblk=0}
+      /^---[[:space:]]*$/{ if(inblk==0){inblk=1;next} else {inblk=0;exit} }
+      inblk==1 && $1 ~ /^title:/ {
+        sub(/^title:[[:space:]]*/, "", $0); gsub(/^"|"$/, "", $0); print; exit
+      }' "$readme" 2>/dev/null || true)"
+    if [[ -z "$t" ]]; then
+      t="$(awk '/^# /{sub(/^# /,""); print; exit}' "$readme" 2>/dev/null || true)"
+    fi
+  fi
+  [[ -n "$t" ]] && echo "$t" || echo "$fallback"
+}
+
+next_category_num() {
+  local max=0 n
+  shopt -s nullglob
+  for d in category-*; do
+    [[ -d "$d" ]] || continue
+    n="${d##*/category-}"
+    [[ "$n" =~ ^[0-9]{2}$ ]] || continue
+    (( 10#$n > max )) && max=$((10#$n))
+  done
+  printf "%02d" $((max+1))
+}
+
+
+
+show_categories_menu() {
+  echo ""
+  echo "Available categories:"
+  local has=0
+  shopt -s nullglob
+  for d in category-*; do
+    [[ -d "$d" ]] || continue
+    has=1
+    local num="${d##*/category-}"
+    local title; title="$(extract_cat_title_from_readme "$d/readme.md" "Category-$num")"
+    printf "  %s  -  %s\n" "$num" "$title"
+  done
+  if [[ $has -eq 0 ]]; then
+    echo "  (none yet)"
+  fi
+  local nextn; nextn="$(next_category_num)"
+  echo "Suggested next category: $nextn"
+  echo ""
+}
+
+
 ensure_cat_num() {
-  if [[ -z "$CAT_NUM" ]]; then
+  if [[ -z "${CAT_NUM:-}" ]]; then
     if [[ $INTERACTIVE -eq 1 ]]; then
-      ask "Category number (e.g., 1 for category-01): " CAT_NUM "1"
-      CAT_NUM="$(pad2 "$CAT_NUM")"
+      show_categories_menu
+      local def; def="$(next_category_num)"
+      ask "Category number (e.g., 01) [${def}]: " CAT_NUM "$def"
+      # Normalize to 2 digits
+      CAT_NUM="$(printf "%02d" "${CAT_NUM#0}")"
     else
       echo "Missing --cat"; exit 1
     fi
   fi
 }
+
 
 ensure_category_dir_or_offer_create() {
   ensure_cat_num
@@ -641,3 +701,5 @@ EOF
     ;;
   *) echo "Unknown mode: $MODE"; exit 1;;
 esac
+
+
