@@ -18,7 +18,10 @@ Each **category** (e.g., Arrays & Hashing, Two Pointers, etc.) contains multiple
 | [Problem-02: Valid Anagram](./category-01/problem-02/readme.md) | [Sorting](./category-01/problem-02/solution-01/readme.md) |  |  |
 |  | [Hash Map](./category-01/problem-02/solution-02/readme.md) |  |  |
 |  | [Hash Table (Using Array)](./category-01/problem-02/solution-03/readme.md) |  |  |
-| [Problem-03: Two Sum](./category-01/problem-03/readme.md) |  |  |  |
+| [Problem-03: Two Sum](./category-01/problem-03/readme.md) | [Brute Force](./category-01/problem-03/solution-01/readme.md) |  |  |
+|  | [Sorting](./category-01/problem-03/solution-02/readme.md) |  |  |
+|  | [Hash Map (Two Pass)](./category-01/problem-03/solution-03/readme.md) |  |  |
+|  | [Hash Map (One Pass)](./category-01/problem-03/solution-04/readme.md) |  |  |
 
 ### 2. [Category-02 - Two Pointers](./category-02/readme.md)
 | Problem | Solution Approaches | Time Complexity | Space Complexity |
