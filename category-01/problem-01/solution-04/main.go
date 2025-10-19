@@ -3,9 +3,18 @@ package main
 
 import "fmt"
 
+func hasDuplicates(nums []int) bool {
+	seen := make(map[int]struct{})
+	for _, num := range nums {
+		seen[num] = struct{}{}
+	}
+	return len(seen) < len(nums)
+}
+
 func solve() interface{} {
 	// TODO: implement
-	return nil
+	nums := []int{1, 2, 3, 4, 5, 6, 7, 7}
+	return hasDuplicates(nums)
 }
 
 func main() {
