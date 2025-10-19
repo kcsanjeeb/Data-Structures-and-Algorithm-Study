@@ -1,0 +1,57 @@
+## Time Complexity Calculation (my simple way)
+
+### 1. Loop
+```go
+for i:=0; i<n; i++ {    // n times
+    x = y + z           // constant time (c)
+}
+```
+So, it will be c * n 
+In big 0 terms we can neglect this constant (c) 
+So it is O(n)
+
+### 2. Nested Loop 
+```go
+for i:=0; i<n; i++ {        // n times
+    for j:=1; j<n; j++ {    // n times
+        x = y + z           // constant time (c)
+    }
+}
+```
+So, it will be n * n * c = cn²
+We neglect the constant (c)
+so it is O(n²)
+
+### 3. Sequential Statements
+```go
+a = a + b ; // constant time c₁
+
+for i:=0 ; i < n ; i++ {    // n times
+    x = y+z                 // constant time c₂
+}
+
+for j:=0 ; j<n ; j++{   // n times
+    j = k+l             // constant time c₃
+}
+```
+= c₁ + n*c₂ + n*c₃
+Neglect the constants 
+= n+n = 2n (neglect 2) = O(n)
+
+### 4. If-else statements
+```go 
+if {
+    // Suppose inside it is for loop with O(n)
+} else{
+    // Suppose inside it is for loop with O(n²)
+}
+```
+We consider with the bigger time complexity i.e, O(n²)
+
+## Hirerarchy 
+O(1) < O(logn) < O(n) < O(nlogn) < O(n^c) < O(n!)
+( best case ) ----> (Worst Case)
+
+
+[Sorting And Searching Algorithms - Time Complexities Cheat Sheet | HackerEarth](https://he-s3.s3.amazonaws.com/media/uploads/c950295.png)
+
