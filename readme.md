@@ -100,6 +100,7 @@ Each **category** (e.g., Arrays & Hashing, Two Pointers, etc.) contains multiple
 ---
 
 ## 📚 Theory
+* [Complexity Calculation](./theory/time-complexity.mdx)
 * [Brute Force](https://www.geeksforgeeks.org/dsa/brute-force-approach-and-its-pros-and-cons)
 
 ## ⚙️ How to Run Any Solution
