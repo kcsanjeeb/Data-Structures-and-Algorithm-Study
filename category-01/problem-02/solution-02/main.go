@@ -19,6 +19,7 @@ func isAnagram(s string, t string) any {
 	}
 
 	for char, countInS := range countS {
+		fmt.Println(char)
 		if countT[char] != countInS {
 			return false
 		}
