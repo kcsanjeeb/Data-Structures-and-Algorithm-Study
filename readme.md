@@ -22,8 +22,8 @@ Each **category** (e.g., Arrays & Hashing, Two Pointers, etc.) contains multiple
 |  | [Sorting](./category-01/problem-03/solution-02/readme.md) | O(n log n) | O(n) |
 |  | [Hash Map (Two Pass)](./category-01/problem-03/solution-03/readme.md) | O(n) | O(n) |
 |  | [Hash Map (One Pass)](./category-01/problem-03/solution-04/readme.md) | O(n) | O(n) |
-| [Problem-04: Group Anagrams](./category-01/problem-04/readme.md) | [Sorting](./category-01/problem-04/solution-01/readme.md) |  |  |
-|  | [Hash Table](./category-01/problem-04/solution-02/readme.md) |  |  |
+| [Problem-04: Group Anagrams](./category-01/problem-04/readme.md) | [Sorting](./category-01/problem-04/solution-01/readme.md) | O(n log n + m log m) | O(1) |
+|  | [Hash Table](./category-01/problem-04/solution-02/readme.md) | O(n + m)  | O(1) |
 
 ### 2. [Category-02 - Two Pointers](./category-02/readme.md)
 | Problem | Solution Approaches | Time Complexity | Space Complexity |
