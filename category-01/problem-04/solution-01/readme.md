@@ -37,8 +37,8 @@ tags: [anagram, sorting, hash-map, group]
 
 | Metric  |  Complexity | Reason |
 |---------|-------------|--------|
-| **Time**  | O(m × n log n) | sorting m strings |
-| **Space** | O(m × n) | store all strings |
+| **Time**  | O(n log n + m log m) | sorting m strings |
+| **Space** | O(1) | store all strings |
 
 ## ⚡ Code Implementation
 

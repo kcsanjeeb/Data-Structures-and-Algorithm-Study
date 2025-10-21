@@ -35,5 +35,5 @@ tags: [anagram, hash-table, frequency-count, optimal]
 
 | Metric  |  Complexity | Reason |
 |---------|-------------|--------|
-| **Time**  | O(m × n) | count characters in m strings |
-| **Space** | O(m × n) | store all strings |
+| **Time**  | O(n + m) | count characters in m strings |
+| **Space** | O(1) | store all strings |
