@@ -105,7 +105,7 @@ EOF
 }
 
 solution_readme_tpl() {
-  local id="${1-}" title="$2" approach="$3" lang="${4-Go}" tags_csv="${5-}"
+  local id="${1-}" title="$2" approach="$3" lang="${4-Go}" tags_csv="${5-}" recommended="${6-false}"
   [[ -z "$id" ]] && id="$(nowid)"
   local tags_yaml; tags_yaml="$(csv_to_yaml_list "$tags_csv")"
   cat <<EOF
@@ -115,6 +115,7 @@ title: "$title"
 approach_type: "$approach"
 language: "$lang"
 tags: [ $tags_yaml ]
+recommended: $recommended
 ---
 
 ## 🔍 Idea
@@ -284,6 +285,17 @@ extract_complexity_cell() {
       }
     }
   ' "$file" 2>/dev/null || true
+}
+
+# ADD THIS NEW FUNCTION HERE:
+is_recommended_solution() {
+  local file="$1"
+  awk '
+    BEGIN{inblk=0; found=0}
+    /^---[[:space:]]*$/{ if(inblk==0){inblk=1;next} else {inblk=0;exit} }
+    inblk==1 && /^recommended:[[:space:]]*true/ { found=1; exit }
+    END { exit !found }  # This is the key fix
+  ' "$file" 2>/dev/null
 }
 
 # ---------------- Category/Problem/Solution menus (macOS-safe) ----------------
@@ -519,13 +531,18 @@ update_root_toc() {
 
           time_c="$(extract_complexity_cell "$sol/$sol_rm_file" "Time")"
           space_c="$(extract_complexity_cell "$sol/$sol_rm_file" "Space")"
+          # ADD THIS: Check if solution is recommended
+          local recommended_marker=""
+          if is_recommended_solution "$sol/$sol_rm_file"; then
+            recommended_marker="✅ "
+          fi
         fi
 
         if [[ $first_row_done -eq 0 ]]; then
-          echo "| [Problem-$prob_num: $prob_title]($prob_link) | [${sol_title}]($sol_link) | ${time_c:-} | ${space_c:-} |" >> "$tmp_toc"
+          echo "| [Problem-$prob_num: $prob_title]($prob_link) | [${recommended_marker}${sol_title}]($sol_link) | ${time_c:-} | ${space_c:-} |" >> "$tmp_toc"
           first_row_done=1
         else
-          echo "|  | [${sol_title}]($sol_link) | ${time_c:-} | ${space_c:-} |" >> "$tmp_toc"
+          echo "|  | [${recommended_marker}${sol_title}]($sol_link) | ${time_c:-} | ${space_c:-} |" >> "$tmp_toc"
         fi
       done
 
@@ -741,13 +758,19 @@ do_solution() {
   if [[ $INTERACTIVE -eq 1 && -z "$SOL_LANG" ]]; then ask "Language [Go]: " SOL_LANG "Go"; fi
   if [[ $INTERACTIVE -eq 1 && -z "$SOL_TAGS" ]]; then ask "Solution tags CSV (optional): " SOL_TAGS ""; fi
   if [[ $INTERACTIVE -eq 1 && -z "$SOL_ID" ]]; then ask "Front-matter id for Solution (blank=auto): " SOL_ID ""; fi
-
+  # In do_solution function, add:
+  local RECOMMENDED="false"
+  if [[ $INTERACTIVE -eq 1 ]]; then
+    if ask_yn "Is this a recommended solution?"; then
+      RECOMMENDED="true"
+    fi
+  fi
   mkdir -p "$SOLDIR"
 
   if [[ -f "$SOLDIR/readme.md" ]]; then
     echo "  = exists: $SOLDIR/readme.md (unchanged)"
   else
-    solution_readme_tpl "$SOL_ID" "$SOL_TITLE" "$SOL_APPROACH" "$SOL_LANG" "$SOL_TAGS" \
+    solution_readme_tpl "$SOL_ID" "$SOL_TITLE" "$SOL_APPROACH" "$SOL_LANG" "$SOL_TAGS" "$RECOMMENDED" \
       | write_file "$SOLDIR/readme.md"
   fi
 
