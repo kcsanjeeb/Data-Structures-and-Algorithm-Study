@@ -246,17 +246,41 @@ extract_difficulty() {
 }
 
 # extract time/space complexity from solution README table
+# extract_complexity_cell() {
+#   local file="$1" which="$2" # "Time" or "Space"
+#   awk -v which="$which" '
+#     BEGIN{FS="|"}
+#     $0 ~ /^\|[[:space:]]*Metric/ { next }
+#     $0 ~ /^\|[-[:space:]]*\|/    { next }
+#     {
+#       label=$2; gsub(/^[[:space:]]+|[[:space:]]+$/, "", label);
+#       if(label==which){
+#         val=$3; gsub(/^[[:space:]]+|[[:space:]]+$/, "", val);
+#         print val; exit
+#       }
+#     }
+#   ' "$file" 2>/dev/null || true
+# }
+
 extract_complexity_cell() {
   local file="$1" which="$2" # "Time" or "Space"
   awk -v which="$which" '
     BEGIN{FS="|"}
-    $0 ~ /^\|[[:space:]]*Metric/ { next }
-    $0 ~ /^\|[-[:space:]]*\|/    { next }
+    /^\|[[:space:]]*Metric/ { next }
+    /^\|[-[:space:]]*\|/    { next }
     {
-      label=$2; gsub(/^[[:space:]]+|[[:space:]]+$/, "", label);
-      if(label==which){
-        val=$3; gsub(/^[[:space:]]+|[[:space:]]+$/, "", val);
-        print val; exit
+      # More flexible matching for Time/Space rows
+      for(i=2; i<=NF; i++) {
+        gsub(/^[[:space:]]+|[[:space:]]+$/, "", $i);
+        if($i ~ which && (which == "Time" || which == "Space")) {
+          # Get the next cell for complexity value
+          if(i+1 <= NF) {
+            val=$(i+1); 
+            gsub(/^[[:space:]]+|[[:space:]]+$/, "", val);
+            print val; 
+            exit
+          }
+        }
       }
     }
   ' "$file" 2>/dev/null || true

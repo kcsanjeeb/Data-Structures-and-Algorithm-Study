@@ -11,19 +11,19 @@ Each **category** (e.g., Arrays & Hashing, Two Pointers, etc.) contains multiple
 ### 1. [Category-01 - Arrays & Hashing](./category-01/readme.md)
 | Problem | Solution Approaches | Time Complexity | Space Complexity |
 | --- | --- | --- | --- |
-| [Problem-01: Contains Duplicate](./category-01/problem-01/readme.md) | [Brute Force](./category-01/problem-01/solution-01/readme.md) |  |  |
-|  | [Sorting](./category-01/problem-01/solution-02/readme.md) |  |  |
-|  | [Hash Set](./category-01/problem-01/solution-03/readme.md) |  |  |
-|  | [Hash Set Length](./category-01/problem-01/solution-04/readme.md) |  |  |
-| [Problem-02: Valid Anagram](./category-01/problem-02/readme.md) | [Sorting](./category-01/problem-02/solution-01/readme.md) |  |  |
-|  | [Hash Map](./category-01/problem-02/solution-02/readme.md) |  |  |
+| [Problem-01: Contains Duplicate](./category-01/problem-01/readme.md) | [Brute Force](./category-01/problem-01/solution-01/readme.md) | O(n²) | O(1) |
+|  | [Sorting](./category-01/problem-01/solution-02/readme.md) | O(n log n) | O( 1 ) |
+|  | [Hash Set](./category-01/problem-01/solution-03/readme.md) | O(n) | O(n) |
+|  | [Hash Set Length](./category-01/problem-01/solution-04/readme.md) | O(n) | O(n) |
+| [Problem-02: Valid Anagram](./category-01/problem-02/readme.md) | [Sorting](./category-01/problem-02/solution-01/readme.md) | O(n log n + m log m) | O(n + m) |
+|  | [Hash Map](./category-01/problem-02/solution-02/readme.md) | O(n) | O(k) |
 |  | [Hash Table (Using Array)](./category-01/problem-02/solution-03/readme.md) | O(n + m) | O(1) |
 | [Problem-03: Two Sum](./category-01/problem-03/readme.md) | [Brute Force](./category-01/problem-03/solution-01/readme.md) | O(n²) | O(1) |
 |  | [Sorting + Two Pointers](./category-01/problem-03/solution-02/readme.md) | O(n log n) | O(n) |
 |  | [Hash Map (Two Pass)](./category-01/problem-03/solution-03/readme.md) | O(n) | O(n) |
 |  | [Hash Map (One Pass)](./category-01/problem-03/solution-04/readme.md) | O(n) | O(n) |
-| [Problem-04: Group Anagrams](./category-01/problem-04/readme.md) | [Sorting](./category-01/problem-04/solution-01/readme.md) |  |  |
-|  | [Hash Table](./category-01/problem-04/solution-02/readme.md) |  |  |
+| [Problem-04: Group Anagrams](./category-01/problem-04/readme.md) | [Sorting](./category-01/problem-04/solution-01/readme.md) | O(n log n + m log m) | O(1) |
+|  | [Hash Table](./category-01/problem-04/solution-02/readme.md) | O(n + m) | O(1) |
 | [Problem-05: Top K Frequent Elements](./category-01/problem-05/readme.md) |  |  |  |
 
 ### 2. [Category-02 - Two Pointers](./category-02/readme.md)
