@@ -1,10 +1,10 @@
 ---
-id: 20251022-111101-28291
-title: "Sorting"
+id: 20251022-111146-24757
+title: "Bucket Sort"
 approach_type: ""
 language: "Go"
 tags: [  ]
-recommended: false
+recommended: true
 ---
 
 ## 🔍 Idea

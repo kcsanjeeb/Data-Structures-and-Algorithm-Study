@@ -1,6 +1,6 @@
 ---
-id: 20251022-111101-28291
-title: "Sorting"
+id: 20251022-111121-28370
+title: "Min-Heap"
 approach_type: ""
 language: "Go"
 tags: [  ]
