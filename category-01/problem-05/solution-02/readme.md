@@ -34,3 +34,14 @@ recommended: false
 | **Time**  | O( ) | [1-2 word reason: nested loops/hashmap/recursion] |
 | **Space** | O( ) | [1-2 word reason: extra storage/recursion stack] |
 
+## Code
+
+```bash
+term@mac solution-02 $ go mod init solution-02
+
+
+term@mac solution-02 $ go get github.com/emirpasic/gods
+
+go: downloading github.com/emirpasic/gods v1.18.1
+go: added github.com/emirpasic/gods v1.18.1
+```
