@@ -141,3 +141,55 @@ return z        // 4 bytes
 * Using hash map/set → usually O(n) time, O(n) space
 * No extra storage → O(1) space
 * Recursion → check depth and branches
+
+---
+
+## Time Complexity Order (Most to Least Expensive):
+### Extremely Bad
+* O(n!) - Factorial
+* O(2ⁿ) - Exponential
+* O(n²) - Quadratic
+
+### Moderate
+* O(n log n) - Linearithmic
+* O(n) - Linear
+* O(log n) - Logarithmic
+
+### Excellent
+* O(1) - Constant
+
+## Space Complexity Order (Most to Least Expensive):
+* O(n!) / O(2ⁿ)
+* O(n²)
+* O(n)
+* O(log n)
+* O(1)
+
+## Quick Reference Guide:
+#### For Time Complexity - Look for these in order:
+```bash
+n! > 2ⁿ > n² > n log n > n > log n > 1
+```
+#### For Space Complexity - Look for these in order:
+```bash
+n! > 2ⁿ > n² > n > log n > 1
+```
+
+### How to use this:
+* List all complexities from your code
+* Pick the highest one using the order above
+* That's your answer!
+```bash
+Time: O(1), O(n), O(n), O(n log n), O(k)
+Highest: O(n log n) ← Final Answer
+
+Space: O(1), O(n), O(n), O(log n), O(k)  
+Highest: O(n) ← Final Answer
+
+# Another Example
+Time: O(n²), O(n), O(log n), O(1)
+Highest: O(n²) ← Final Answer
+
+Space: O(n), O(log n), O(1)
+Highest: O(n) ← Final Answer
+```
