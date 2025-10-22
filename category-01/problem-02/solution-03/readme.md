@@ -4,6 +4,7 @@ title: "Hash Table (Using Array)"
 approach_type: "Frequency Counting"
 language: "Go"
 tags: [array, anagram, frequency-count, optimal]
+recommended: true
 ---
 
 ## 🔍 Idea

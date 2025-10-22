@@ -4,6 +4,7 @@ title: "Hash Map (Two Pass)"
 approach_type: "Hash Map with Two Passes"
 language: "Go"
 tags: [two-sum, hash-map, two-pass, efficient]
+recommended: true
 ---
 
 ## 🔍 Idea

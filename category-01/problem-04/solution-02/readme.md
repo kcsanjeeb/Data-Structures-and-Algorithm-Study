@@ -4,6 +4,7 @@ title: "Hash Table"
 approach_type: "Character Frequency Counting"
 language: "Go"
 tags: [anagram, hash-table, frequency-count, optimal]
+recommended: true
 ---
 
 ## 🔍 Idea

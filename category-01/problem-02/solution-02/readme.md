@@ -4,6 +4,7 @@ title: "Hash Map"
 approach_type: ""
 language: "Go"
 tags: [  ]
+recommended: true
 ---
 # Hash Map Frequency Counting Approach
 
