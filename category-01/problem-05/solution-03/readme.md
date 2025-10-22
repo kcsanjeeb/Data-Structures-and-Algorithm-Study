@@ -1,5 +1,5 @@
 ---
-id: 20251022-111146-24757
+id: 20251022-111521-20280
 title: "Bucket Sort"
 approach_type: ""
 language: "Go"
