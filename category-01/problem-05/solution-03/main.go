@@ -17,7 +17,19 @@ func topKFrequent(nums []int, k int) []int {
 		freq[cnt] = append(freq[cnt], num)
 	}
 	fmt.Println(freq)
-	return []int{}
+
+	// Step 3: Collect results from highest to lowest frequency
+	res := []int{}
+	for i := len(freq) - 1; i > 0; i-- {
+		for _, num := range freq[i] {
+			res = append(res, num)
+			if len(res) == k {
+				return res
+			}
+		}
+	}
+	fmt.Println(res)
+	return res
 }
 
 func solve() interface{} {
@@ -29,30 +41,3 @@ func solve() interface{} {
 func main() {
 	fmt.Println("solve() =>", solve())
 }
-
-// func topKFrequent(nums []int, k int) []int {
-// 	count := make(map[int]int)
-// 	freq := make([][]int, len(nums)+1)
-
-// 	for _, num := range nums {
-// 		count[num]++
-// 	}
-// 	for num, cnt := range count {
-// 		freq[cnt] = append(freq[cnt], num)
-// 	}
-
-// 	res := []int{}
-// 	for i := len(freq) - 1; i > 0; i-- {
-// 		for _, num := range freq[i] {
-// 			res = append(res, num)
-// 			if len(res) == k {
-// 				return res
-// 			}
-// 		}
-// 	}
-
-// 	fmt.Println("count ", count)
-// 	fmt.Println("frequ ", freq)
-
-// 	return res
-// }
