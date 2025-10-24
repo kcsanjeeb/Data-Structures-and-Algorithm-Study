@@ -38,8 +38,8 @@ for num, freq := range count {  // RANDOM ORDER!
 }
 
 ```
-* What's happening in your case:
-    * Your count map is: map[1:2 2:3 3:4 4:5 5:6]
+* What's happening in this case:
+    * The count map is: map[1:2 2:3 3:4 4:5 5:6]
     * But when you range over it, Go might give you:
         * First iteration: num=2, freq=3
         * Second iteration: num=3, freq=4
