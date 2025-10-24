@@ -3,17 +3,59 @@ package main
 
 import (
 	"fmt"
-	// "github.com/emirpasic/gods/queues/priorityqueue"
-	// "github.com/emirpasic/gods/utils"
+
+	"github.com/emirpasic/gods/queues/priorityqueue"
+	"github.com/emirpasic/gods/utils"
 )
 
 func topKFrequent(nums []int, k int) []int {
-	return []int{}
+	count := make(map[int]int)
+	for _, num := range nums {
+		count[num]++
+	}
+
+	fmt.Println("=== STEP 1: Frequency Count ===")
+	fmt.Println("count :", count)
+
+	heap := priorityqueue.NewWith(func(a, b interface{}) int {
+		freqA := a.([2]int)[0]
+		freqB := b.([2]int)[0]
+		return utils.IntComparator(freqA, freqB)
+	})
+
+	fmt.Println("=== STEP 2: Building Heap (size limit:", k, ") ===")
+
+	for num, freq := range count {
+		fmt.Printf("\n--- Adding [freq=%d, num=%d] ---\n", freq, num)
+
+		heap.Enqueue([2]int{freq, num})
+		fmt.Printf("After Enqueue - Heap size: %d, Elements: %v\n", heap.Size(), heap.Values())
+
+		if heap.Size() > k {
+			removed, _ := heap.Dequeue()
+			removedPair := removed.([2]int)
+			fmt.Printf("❌ REMOVED: [freq=%d, num=%d] (smallest frequency)\n", removedPair[0], removedPair[1])
+			fmt.Printf("After Dequeue - Heap size: %d, Elements: %v\n", heap.Size(), heap.Values())
+		} else {
+			fmt.Println("✅ No removal needed - within size limit")
+		}
+	}
+
+	fmt.Println("\n=== STEP 3: Final Heap ===")
+	res := make([]int, k)
+	for i := k - 1; i >= 0; i-- {
+		value, _ := heap.Dequeue()
+		pair := value.([2]int)
+		res[i] = pair[1] // Store the NUMBER (not frequency)
+	}
+	fmt.Println("Result: ", res)
+
+	return res
 }
 
 func solve() interface{} {
-	// TODO: implement
-	nums := []int{1, 1, 2, 2, 2, 3, 3, 3, 3, 5, 5, 5, 5, 5, 5, 5}
+	// Use a simple example for clarity
+	nums := []int{1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5}
 	k := 2
 	return topKFrequent(nums, k)
 }
@@ -21,34 +63,3 @@ func solve() interface{} {
 func main() {
 	fmt.Println("solve() =>", solve())
 }
-
-// func topKFrequent(nums []int, k int) []int {
-
-// 	// Step 1: Count frequencies (same as before)
-// 	count := make(map[int]int)
-// 	for _, num := range nums {
-// 		count[num]++
-// 	}
-// 	// count = {1:1, 2:2, 3:3} for [1,2,2,3,3,3]
-
-// 	// Step 2: Create a MIN-HEAP that compares by frequency
-// 	heap := priorityqueue.NewWith(func(a, b interface{}) int {
-// 		freqA := a.([2]int)[0]                   // Get frequency from [freq, num]
-// 		freqB := b.([2]int)[0]                   // Get frequency from [freq, num]
-// 		return utils.IntComparator(freqA, freqB) // Min-heap: smaller frequencies bubble up
-// 	})
-// 	for num, freq := range count {
-// 		heap.Enqueue([2]int{freq, num})
-// 		if heap.Size() > k {
-// 			heap.Dequeue()
-// 		}
-// 	}
-// 	fmt.Println(heap)
-
-// 	res := make([]int, k)
-// 	for i := k - 1; i >= 0; i-- {
-// 		value, _ := heap.Dequeue()
-// 		res[i] = value.([2]int)[1]
-// 	}
-// 	return res
-// }
