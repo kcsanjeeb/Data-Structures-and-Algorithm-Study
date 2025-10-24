@@ -24,7 +24,7 @@ Each **category** (e.g., Arrays & Hashing, Two Pointers, etc.) contains multiple
 |  | [Hash Map (One Pass)](./category-01/problem-03/solution-04/readme.md) | O(n) | O(n) |
 | [Problem-04: Group Anagrams](./category-01/problem-04/readme.md) | [Sorting](./category-01/problem-04/solution-01/readme.md) | O(n log n + m log m) | O(1) |
 |  | [✅ Hash Table](./category-01/problem-04/solution-02/readme.md) | O(n + m) | O(1) |
-| [Problem-05: Top K Frequent Elements](./category-01/problem-05/readme.md) | [Sorting](./category-01/problem-05/solution-01/readme.md) | O( ) | O( ) |
+| [Problem-05: Top K Frequent Elements](./category-01/problem-05/readme.md) | [Sorting](./category-01/problem-05/solution-01/readme.md) | O(n log n) | O(n) |
 |  | [Min-Heap](./category-01/problem-05/solution-02/readme.md) | O(n log k) | O(n+k) |
 |  | [✅ Bucket Sort](./category-01/problem-05/solution-03/readme.md) | O(n) | O(n) |
 
