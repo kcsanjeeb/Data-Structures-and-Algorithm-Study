@@ -4,11 +4,19 @@ package main
 import "fmt"
 
 func topKFrequent(nums []int, k int) []int {
+	// Step 1: Count frequencies (same as before)
 	count := make(map[int]int)
 	for _, num := range nums {
 		count[num]++
 	}
 	fmt.Println(count)
+
+	// Step 2: Create frequency buckets
+	freq := make([][]int, len(nums)+1)
+	for num, cnt := range count {
+		freq[cnt] = append(freq[cnt], num)
+	}
+	fmt.Println(freq)
 	return []int{}
 }
 
