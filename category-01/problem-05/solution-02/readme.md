@@ -4,7 +4,7 @@ title: "Min-Heap"
 approach_type: "Min-Heap with Priority Queue"
 language: "Go"
 tags: ["Heap", "Priority Queue", "Hash Map"]
-recommended: true
+recommended: false
 ---
 
 ## 🔍 Idea
