@@ -27,7 +27,8 @@ Each **category** (e.g., Arrays & Hashing, Two Pointers, etc.) contains multiple
 | [Problem-05: Top K Frequent Elements](./category-01/problem-05/readme.md) | [Sorting](./category-01/problem-05/solution-01/readme.md) | O(n log n) | O(n) |
 |  | [Min-Heap](./category-01/problem-05/solution-02/readme.md) | O(n log k) | O(n + k) |
 |  | [✅ Bucket Sort](./category-01/problem-05/solution-03/readme.md) | O(n) | O(n) |
-| [Problem-06: Encode and Decode Strings](./category-01/problem-06/readme.md) | [Encoding & Decoding](./category-01/problem-06/solution-01/readme.md) | O( ) | O( ) |
+| [Problem-06: Encode and Decode Strings](./category-01/problem-06/readme.md) | [Encoding & Decoding](./category-01/problem-06/solution-01/readme.md) | O(n) | O(n) |
+|  | [Encoding & Decoding (Optimal)](./category-01/problem-06/solution-02/readme.md) | O( ) | O( ) |
 
 ### 2. [Category-02 - Two Pointers](./category-02/readme.md)
 | Problem | Solution Approaches | Time Complexity | Space Complexity |
