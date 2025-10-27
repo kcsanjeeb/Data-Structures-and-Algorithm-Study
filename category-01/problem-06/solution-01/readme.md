@@ -4,7 +4,7 @@ title: "Encoding & Decoding"
 approach_type: "String Manipulation"
 language: "Go"
 tags: ["String", "Encoding", "Decoding"]
-recommended: false
+recommended: true
 ---
 
 ## 🔍 Idea
