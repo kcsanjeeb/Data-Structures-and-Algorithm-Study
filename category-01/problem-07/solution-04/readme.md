@@ -4,7 +4,7 @@ title: "Prefix & Suffix (Optimal)"
 approach_type: ""
 language: "Go"
 tags: [  ]
-recommended: false
+recommended: true
 ---
 
 ## 🔍 Idea
