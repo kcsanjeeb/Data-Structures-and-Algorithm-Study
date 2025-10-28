@@ -30,6 +30,7 @@ Each **category** (e.g., Arrays & Hashing, Two Pointers, etc.) contains multiple
 | [Problem-06: Encode and Decode Strings](./category-01/problem-06/readme.md) | [✅ Encoding & Decoding](./category-01/problem-06/solution-01/readme.md) | O(m) | O(m+n) |
 |  | [Encoding & Decoding (Optimal)](./category-01/problem-06/solution-02/readme.md) | O(m) | O(m+n) |
 | [Problem-07: Products of Array Except Self](./category-01/problem-07/readme.md) | [Brute Force](./category-01/problem-07/solution-01/readme.md) | O( ) | O( ) |
+|  | [Division](./category-01/problem-07/solution-02/readme.md) | O( ) | O( ) |
 
 ### 2. [Category-02 - Two Pointers](./category-02/readme.md)
 | Problem | Solution Approaches | Time Complexity | Space Complexity |
