@@ -10,12 +10,12 @@ Define the problem statement here....
 
 #### ▶️ Example 1:
 ```bash
-# Place example here ....
+
 ```
 
 #### ▶️ Example 2:
 ```bash
-# Place example here ....
+
 ```
 
 ## 🎯 Constrains
