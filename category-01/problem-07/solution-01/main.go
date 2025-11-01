@@ -3,11 +3,17 @@ package main
 
 import "fmt"
 
+func productExceptSelf(nums []int) []int {
+	return []int{}
+}
+
 func solve() interface{} {
 	// TODO: implement
-	return nil
+	nums := []int{1, 24, 6}
+	return productExceptSelf(nums)
 }
 
 func main() {
+
 	fmt.Println("solve() =>", solve())
 }
